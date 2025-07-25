@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - D-ARCH Modular Kitchen & Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF5722;
+      --black: #222;
+      --white: #fff;
+      --light-gray: #f8f8f8;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid #f3f3f3;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 5vw;
+      position: sticky; 
+      top: 0; 
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.8rem;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none; 
+      color: var(--black);
+      margin-left: 2rem; 
+      font-weight: 500;
+      font-size: 1.1rem; 
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a.active, 
+    nav a:hover { 
+      color: var(--orange);
+    }
+    
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+    }
+    
+    /* Main Content */
+    main {
+      padding: 80px 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+    
+    .services-list {
+      background: var(--light-gray);
+      padding: 60px 40px;
+      border-radius: 20px;
+      margin-bottom: 80px;
+    }
+    
+    .services-list h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .services-list ul {
+      list-style: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .services-list li {
+      background: var(--white);
+      margin-bottom: 20px;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--black);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .services-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .services-list li::before {
+      content: '•';
+      color: var(--orange);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    .service-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+    
+    .service-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .service-card h3 {
+      color: var(--orange);
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .service-card p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+    
+    .service-card ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+    
+    .service-card ul li {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .service-card ul li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .cta-section {
+      background: var(--orange);
+      color: var(--white);
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: var(--white);
+      color: var(--orange);
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    .home-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid var(--orange);
+      border-radius: 8px;
+      padding: 12px 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+    
+    .home-link:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background: #25D366; 
+      color: var(--white);
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3); 
+      display: flex; 
+      align-items: center;
+      justify-content: center; 
+      text-decoration: none; 
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 40px 5vw 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: var(--orange);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-info {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .service-details {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 40px 5vw;
+      }
+      
+      .services-list,
+      .cta-section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">D‑ARCH</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Client Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Our Services</h1>
+    
+    <div class="services-list">
+      <h2>What We Offer</h2>
+      <ul>
+        <li>Modular Kitchen Design &amp; Installation</li>
+        <li>Custom Furniture &amp; Wardrobe Units</li>
+        <li>TV Units with Smart Storage</li>
+        <li>False Ceiling, Lighting &amp; Back Panels</li>
+        <li>2D/3D Floor Plans, Interior Walkthroughs</li>
+        <li>AutoCAD &amp; 3ds Max Training for Students</li>
+      </ul>
+    </div>
+
+    <div class="service-details">
+      <div class="service-card">
+        <h3>Modular Kitchen Design</h3>
+        <p>Transform your cooking space with our expertly designed modular kitchens that combine style, functionality, and efficiency.</p>
+        <ul>
+          <li>L-Shape Kitchens - Perfect for corner spaces</li>
+          <li>U-Shape Kitchens - Maximum storage and workspace</li>
+          <li>Island Kitchens - Modern, social cooking experience</li>
+          <li>Parallel Kitchens - Ideal for narrow spaces</li>
+          <li>Premium materials and finishes</li>
+          <li>Soft-close hinges and drawers</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Custom Furniture Solutions</h3>
+        <p>Maximize your space with our custom-designed furniture that perfectly fits your home and lifestyle requirements.</p>
+        <ul>
+          <li>Walk-in wardrobes</li>
+          <li>Sliding door wardrobes</li>
+          <li>Study tables and storage</li>
+          <li>Bedroom furniture sets</li>
+          <li>Living room storage units</li>
+          <li>Space-saving solutions</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>TV Units & Entertainment</h3>
+        <p>Create the perfect entertainment zone with our stylish TV units that combine aesthetics with smart storage solutions.</p>
+        <ul>
+          <li>Wall-mounted TV units</li>
+          <li>Floor-standing entertainment centers</li>
+          <li>Hidden cable management</li>
+          <li>LED lighting integration</li>
+          <li>Speaker accommodation</li>
+          <li>Remote-friendly designs</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Interior Design Services</h3>
+        <p>Complete interior transformation services to create cohesive, beautiful spaces throughout your home.</p>
+        <ul>
+          <li>False ceiling designs</li>
+          <li>Decorative lighting solutions</li>
+          <li>Wall panels and cladding</li>
+          <li>PVC and laminate installations</li>
+          <li>Color consultation</li>
+          <li>Space planning</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Design & Visualization</h3>
+        <p>See your dream space before it's built with our advanced 2D/3D design and visualization services.</p>
+        <ul>
+          <li>2D floor plans</li>
+          <li>3D rendered designs</li>
+          <li>Virtual walkthroughs</li>
+          <li>Material selection guidance</li>
+          <li>Cost estimation</li>
+          <li>Project timeline planning</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Training Programs</h3>
+        <p>Learn professional design skills with our comprehensive training programs for aspiring designers and students.</p>
+        <ul>
+          <li>AutoCAD fundamentals</li>
+          <li>3ds Max modeling</li>
+          <li>Interior design principles</li>
+          <li>Kitchen planning basics</li>
+          <li>Hands-on project work</li>
+          <li>Certification upon completion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Transform Your Space?</h2>
+      <p>Contact us today for a free consultation and let's bring your vision to life.</p>
+      <a href="contact.html" class="cta-btn">Get Started Now</a>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="home-link">← Back to Homepage</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/darchmodular" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/darchmodular" target="_blank">Instagram</a>
+        <a href="https://wa.me/917509057442" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 D‑ARCH Modular Kitchen & Interior. All rights reserved.</p>
+        <p>Seoni, Madhya Pradesh | Email: darchmodular@gmail.com | Phone: +91 7509057442</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917509057442?text=Hi! I'm interested in your modular kitchen and interior services." class="whatsapp-btn" title="Chat on WhatsApp">
+    💬
+  </a>
+</body>
+</html>

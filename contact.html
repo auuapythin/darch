@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - D-ARCH Modular Kitchen & Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF5722;
+      --black: #222;
+      --white: #fff;
+      --light-gray: #f8f8f8;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid #f3f3f3;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 5vw;
+      position: sticky; 
+      top: 0; 
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.8rem;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none; 
+      color: var(--black);
+      margin-left: 2rem; 
+      font-weight: 500;
+      font-size: 1.1rem; 
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a.active, 
+    nav a:hover { 
+      color: var(--orange);
+    }
+    
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+    }
+    
+    /* Main Content */
+    main {
+      padding: 80px 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+    
+    .contact-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+    }
+    
+    .contact-intro p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+    
+    .contact-form-section {
+      background: var(--light-gray);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+    
+    .contact-form-section h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--black);
+      font-size: 1.1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background: var(--white);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,87,34,0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .file-upload {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    
+    .file-upload input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    
+    .file-upload-label {
+      display: block;
+      padding: 15px 20px;
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--white);
+    }
+    
+    .file-upload-label:hover,
+    .file-upload input:focus + .file-upload-label {
+      border-color: var(--orange);
+      background: rgba(255,87,34,0.05);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      padding: 18px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .submit-btn:hover {
+      background: #e64a19;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,87,34,0.3);
+    }
+    
+    .contact-info-section {
+      padding: 20px 0;
+    }
+    
+    .contact-info-section h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-3px);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
+    
+    .contact-details h3 {
+      color: var(--orange);
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    
+    .contact-details p {
+      color: #555;
+      font-size: 1.1rem;
+    }
+    
+    .contact-details a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+    
+    .map-section {
+      background: var(--light-gray);
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    
+    .map-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .map-section p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 40px;
+    }
+    
+    .map-embed {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .map-embed iframe {
+      width: 100%;
+      height: 350px;
+      border: none;
+    }
+    
+    .business-hours {
+      margin-top: 80px;
+      background: var(--white);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .business-hours h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: var(--light-gray);
+      border-radius: 10px;
+    }
+    
+    .day {
+      font-weight: 600;
+      color: var(--black);
+    }
+    
+    .time {
+      color: var(--orange);
+      font-weight: 500;
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background: #25D366; 
+      color: var(--white);
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3); 
+      display: flex; 
+      align-items: center;
+      justify-content: center; 
+      text-decoration: none; 
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 40px 5vw 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: var(--orange);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-info {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 40px 5vw;
+      }
+      
+      .contact-form-section,
+      .map-section,
+      .business-hours {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">D‑ARCH</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Client Reviews</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Contact Us</h1>
+    
+    <div class="contact-intro">
+      <p>Ready to transform your space? Get in touch with us today for a free consultation. We're here to help bring your design dreams to life in Seoni and surrounding areas.</p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-form-section">
+        <h2>Send Us a Message</h2>
+        <form action="mailto:darchmodular@gmail.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="modular-kitchen">Modular Kitchen Design</option>
+              <option value="custom-furniture">Custom Furniture & Wardrobes</option>
+              <option value="tv-units">TV Units & Entertainment</option>
+              <option value="interior-design">Complete Interior Design</option>
+              <option value="design-visualization">3D Design & Visualization</option>
+              <option value="training">AutoCAD/3ds Max Training</option>
+              <option value="consultation">Free Consultation</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">Approximate Budget (₹)</label>
+            <select id="budget" name="budget">
+              <option value="">Select budget range</option>
+              <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+              <option value="100000-200000">₹1,00,000 - ₹2,00,000</option>
+              <option value="200000-300000">₹2,00,000 - ₹3,00,000</option>
+              <option value="300000-500000">₹3,00,000 - ₹5,00,000</option>
+              <option value="500000+">₹5,00,000+</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project requirements, timeline, and any specific preferences..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="floorplan">Upload Floorplan (Optional)</label>
+            <div class="file-upload">
+              <input type="file" id="floorplan" name="floorplan" accept=".jpg,.jpeg,.png,.pdf,.dwg">
+              <label for="floorplan" class="file-upload-label">
+                📁 Click to upload your floorplan or drag & drop here<br>
+                <small>Supported formats: JPG, PNG, PDF, DWG (Max 10MB)</small>
+              </label>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info-section">
+        <h2>Get In Touch</h2>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-details">
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/917509057442" target="_blank">+91 7509057442</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-details">
+            <h3>Phone</h3>
+            <p><a href="tel:+917509057442">+91 7509057442</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-details">
+            <h3>Email</h3>
+            <p><a href="mailto:darchmodular@gmail.com">darchmodular@gmail.com</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-details">
+            <h3>Location</h3>
+            <p>Seoni, Madhya Pradesh, India</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">🕒</div>
+          <div class="contact-details">
+            <h3>Quick Response</h3>
+            <p>WhatsApp us for instant replies!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <h2>Find Us</h2>
+      <p>Located in the heart of Seoni, we're easily accessible from all parts of the city and surrounding areas.</p>
+      <div class="map-embed">
+        <iframe src="https://maps.google.com/maps?q=Seoni,Madhya%20Pradesh,India&output=embed" title="D-ARCH Location in Seoni"></iframe>
+      </div>
+    </div>
+
+    <div class="business-hours">
+      <h2>Business Hours</h2>
+      <div class="hours-grid">
+        <div class="hours-item">
+          <span class="day">Monday - Friday</span>
+          <span class="time">9:00 AM - 7:00 PM</span>
+        </div>
+        <div class="hours-item">
+          <span class="day">Saturday</span>
+          <span class="time">9:00 AM - 6:00 PM</span>
+        </div>
+        <div class="hours-item">
+          <span class="day">Sunday</span>
+          <span class="time">10:00 AM - 4:00 PM</span>
+        </div>
+        <div class="hours-item">
+          <span class="day">WhatsApp</span>
+          <span class="time">24/7 Available</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/darchmodular" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/darchmodular" target="_blank">Instagram</a>
+        <a href="https://wa.me/917509057442" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 D‑ARCH Modular Kitchen & Interior. All rights reserved.</p>
+        <p>Seoni, Madhya Pradesh | Email: darchmodular@gmail.com | Phone: +91 7509057442</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917509057442?text=Hi! I'm interested in getting a quote for my project." class="whatsapp-btn" title="Chat on WhatsApp">
+    💬
+  </a>
+
+  <!-- Monku the Desi Bandar Chatbot -->
+  <script>
+    // Simple chatbot functionality for Monku
+    const monkuMessages = [
+      "Namaste! Main Monku hun, aapka design buddy! 🐒",
+      "Form bharne mein koi dikkat? Main madad kar sakta hun!",
+      "Floorplan upload karna hai? Bas click kariye!",
+      "WhatsApp pe message kijiye - turant jawab milega! 📱",
+      "Kitchen design ke liye free consultation available hai!",
+      "Apka budget? Hum har range mein kaam karte hain! 💰"
+    ];
+    
+    let messageIndex = 0;
+    
+    function showMonkuMessage() {
+      if (Math.random() > 0.8) { // 20% chance to show message
+        const message = monkuMessages[messageIndex];
+        alert("🐒 Monku kehta hai: " + message);
+        messageIndex = (messageIndex + 1) % monkuMessages.length;
+      }
+    }
+    
+    // Show Monku message after 15 seconds on contact page
+    setTimeout(showMonkuMessage, 15000);
+    
+    // Random appearances every 45 seconds
+    setInterval(() => {
+      if (Math.random() > 0.93) showMonkuMessage();
+    }, 45000);
+    
+    // File upload label update
+    document.getElementById('floorplan').addEventListener('change', function(e) {
+      const label = document.querySelector('.file-upload-label');
+      if (e.target.files.length > 0) {
+        label.innerHTML = `📁 ${e.target.files[0].name}<br><small>File selected successfully!</small>`;
+      }
+    });
+  </script>
+</body>
+</html>

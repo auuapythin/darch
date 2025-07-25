@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Reviews - D-ARCH Modular Kitchen & Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF5722;
+      --black: #222;
+      --white: #fff;
+      --light-gray: #f8f8f8;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid #f3f3f3;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 5vw;
+      position: sticky; 
+      top: 0; 
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.8rem;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none; 
+      color: var(--black);
+      margin-left: 2rem; 
+      font-weight: 500;
+      font-size: 1.1rem; 
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a.active, 
+    nav a:hover { 
+      color: var(--orange);
+    }
+    
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+    }
+    
+    /* Main Content */
+    main {
+      padding: 80px 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+    
+    .reviews-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+    }
+    
+    .reviews-intro p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+    
+    .review-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      font-size: 5rem;
+      color: var(--orange);
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    .review-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    
+    .review-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      margin-right: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(255,87,34,0.2);
+    }
+    
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .review-info h3 {
+      color: var(--orange);
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    
+    .review-info p {
+      color: #666;
+      font-size: 1rem;
+    }
+    
+    .rating {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .star {
+      color: #ffc107;
+      font-size: 1.2rem;
+      margin-right: 3px;
+    }
+    
+    .review-text {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    
+    .project-info {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.95rem;
+      color: #888;
+    }
+    
+    .stats-section {
+      background: var(--light-gray);
+      padding: 80px 40px;
+      border-radius: 20px;
+      margin-bottom: 80px;
+    }
+    
+    .stats-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .stat-item {
+      text-align: center;
+      background: var(--white);
+      padding: 40px 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      color: #555;
+      font-weight: 500;
+    }
+    
+    .testimonial-video-section {
+      margin-bottom: 80px;
+    }
+    
+    .testimonial-video-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .video-testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .video-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .video-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--orange);
+    }
+    
+    .video-info {
+      padding: 25px;
+    }
+    
+    .video-info h3 {
+      color: var(--orange);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .video-info p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .cta-section {
+      background: var(--orange);
+      color: var(--white);
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: var(--white);
+      color: var(--orange);
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background: #25D366; 
+      color: var(--white);
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3); 
+      display: flex; 
+      align-items: center;
+      justify-content: center; 
+      text-decoration: none; 
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 40px 5vw 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: var(--orange);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-info {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .reviews-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .video-testimonials {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 40px 5vw;
+      }
+      
+      .stats-section,
+      .cta-section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">D‑ARCH</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html" class="active">Client Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">What Our Clients Say</h1>
+    
+    <div class="reviews-intro">
+      <p>Don't just take our word for it. Here's what our satisfied customers in Seoni and surrounding areas have to say about their experience with D‑ARCH Modular Kitchen & Interior.</p>
+    </div>
+
+    <div class="reviews-container">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-1.jpg" alt="Priya Sharma" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Priya Sharma</h3>
+            <p>Seoni, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          D‑ARCH turned my kitchen into my favorite place in the house! The team was incredibly creative and patient throughout the entire process. They listened to all my requirements and delivered exactly what I had envisioned. The quality of materials and workmanship is outstanding.
+        </div>
+        <div class="project-info">
+          Project: L-Shape Modular Kitchen | Completed: March 2024
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-2.jpg" alt="Suresh & Komal Verma" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Suresh & Komal Verma</h3>
+            <p>Seoni, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          We loved the design options and the execution was absolutely flawless. The team completed our kitchen and wardrobe project on time and within budget. The storage solutions are ingenious - we have space for everything! Highly recommended for anyone in Seoni.
+        </div>
+        <div class="project-info">
+          Project: U-Shape Kitchen + Wardrobes | Completed: January 2024
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-3.jpg" alt="Rajesh Gupta" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Rajesh Gupta</h3>
+            <p>Seoni, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          Professional service from start to finish. The 3D visualization helped us see exactly how our kitchen would look before installation. The team was punctual, clean, and respectful of our home. The final result exceeded our expectations completely.
+        </div>
+        <div class="project-info">
+          Project: Island Kitchen + TV Unit | Completed: February 2024
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-4.jpg" alt="Meera Patel" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Meera Patel</h3>
+            <p>Mandla, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          Amazing attention to detail! They transformed our small kitchen into a highly functional space with clever storage solutions. The false ceiling and lighting work they did in our living room is simply beautiful. Worth every rupee spent.
+        </div>
+        <div class="project-info">
+          Project: Parallel Kitchen + Interior Design | Completed: April 2024
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-5.jpg" alt="Amit Kumar" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Amit Kumar</h3>
+            <p>Balaghat, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          Their AutoCAD training program helped me understand the technical aspects of my home renovation. The team is knowledgeable and always ready to explain the design process. Great value for money and excellent customer service.
+        </div>
+        <div class="project-info">
+          Project: Complete Interior + Training | Completed: May 2024
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="client-avatar-6.jpg" alt="Sita Devi" style="background: var(--light-gray);">
+          </div>
+          <div class="review-info">
+            <h3>Sita Devi</h3>
+            <p>Seoni, Madhya Pradesh</p>
+          </div>
+        </div>
+        <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <div class="review-text">
+          The team understood our traditional preferences and created a beautiful blend of modern functionality with classic aesthetics. The customer support even after project completion is commendable. Thank you for making our dream kitchen a reality!
+        </div>
+        <div class="project-info">
+          Project: Traditional Style Kitchen | Completed: June 2024
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <h2>Our Track Record</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Kitchens Designed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Customer Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-video-section">
+      <h2>Video Testimonials</h2>
+      <div class="video-testimonials">
+        <div class="video-card">
+          <div class="video-placeholder">
+            ▶️
+          </div>
+          <div class="video-info">
+            <h3>Kitchen Transformation Journey</h3>
+            <p>Watch how we transformed Mrs. Sharma's kitchen in just 10 days with minimal disruption to daily life.</p>
+          </div>
+        </div>
+        
+        <div class="video-card">
+          <div class="video-placeholder">
+            ▶️
+          </div>
+          <div class="video-info">
+            <h3>Complete Home Makeover</h3>
+            <p>See the complete interior transformation of the Verma family's home in Seoni.</p>
+          </div>
+        </div>
+        
+        <div class="video-card">
+          <div class="video-placeholder">
+            ▶️
+          </div>
+          <div class="video-info">
+            <h3>Customer Experience</h3>
+            <p>Hear directly from our customers about their experience working with D‑ARCH.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Join Our Happy Customers</h2>
+      <p>Ready to transform your space? Contact us today for a free consultation and quote.</p>
+      <a href="contact.html" class="cta-btn">Start Your Project</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/darchmodular" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/darchmodular" target="_blank">Instagram</a>
+        <a href="https://wa.me/917509057442" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 D‑ARCH Modular Kitchen & Interior. All rights reserved.</p>
+        <p>Seoni, Madhya Pradesh | Email: darchmodular@gmail.com | Phone: +91 7509057442</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917509057442?text=Hi! I read your reviews and I'm interested in your services." class="whatsapp-btn" title="Chat on WhatsApp">
+    💬
+  </a>
+</body>
+</html>

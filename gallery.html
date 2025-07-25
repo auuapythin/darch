@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - D-ARCH Modular Kitchen & Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF5722;
+      --black: #222;
+      --white: #fff;
+      --light-gray: #f8f8f8;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid #f3f3f3;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 5vw;
+      position: sticky; 
+      top: 0; 
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.8rem;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none; 
+      color: var(--black);
+      margin-left: 2rem; 
+      font-weight: 500;
+      font-size: 1.1rem; 
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a.active, 
+    nav a:hover { 
+      color: var(--orange);
+    }
+    
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+    }
+    
+    /* Main Content */
+    main {
+      padding: 80px 5vw;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+    
+    .gallery-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+    }
+    
+    .gallery-intro p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--white);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: var(--white);
+      padding: 30px 20px 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    .gallery-overlay h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .gallery-overlay p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    .before-after-section {
+      background: var(--light-gray);
+      padding: 80px 40px;
+      border-radius: 20px;
+      margin-bottom: 80px;
+    }
+    
+    .before-after-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .before-after-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .before-after-slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+    }
+    
+    .before-image,
+    .after-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .after-image {
+      clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+    }
+    
+    .slider-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: var(--orange);
+      cursor: ew-resize;
+      z-index: 10;
+    }
+    
+    .slider-handle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -8px;
+      width: 20px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .before-label,
+    .after-label {
+      position: absolute;
+      top: 20px;
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.7);
+      color: var(--white);
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .before-label {
+      left: 20px;
+    }
+    
+    .after-label {
+      right: 20px;
+    }
+    
+    .project-categories {
+      margin-bottom: 80px;
+    }
+    
+    .project-categories h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .category-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .category-card h3 {
+      color: var(--orange);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .category-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .cta-section {
+      background: var(--orange);
+      color: var(--white);
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: var(--white);
+      color: var(--orange);
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background: #25D366; 
+      color: var(--white);
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3); 
+      display: flex; 
+      align-items: center;
+      justify-content: center; 
+      text-decoration: none; 
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 40px 5vw 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: var(--orange);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-info {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 40px 5vw;
+      }
+      
+      .before-after-section,
+      .cta-section {
+        padding: 40px 20px;
+      }
+      
+      .gallery-item img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">D‑ARCH</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="reviews.html">Client Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Project Gallery</h1>
+    
+    <div class="gallery-intro">
+      <p>Explore our portfolio of completed projects in Seoni and discover how we transform ordinary spaces into extraordinary homes. Each project tells a unique story of design excellence and customer satisfaction.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="20250718_155325-COLLAGE.jpg" alt="Kitchen Design Collage">
+        <div class="gallery-overlay">
+          <h3>Modular Kitchen Collection</h3>
+          <p>A showcase of our diverse kitchen designs featuring modern finishes and smart storage solutions.</p>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="Picsart_25-06-24_18-43-38-543.jpg" alt="Before After Kitchen Transformation">
+        <div class="gallery-overlay">
+          <h3>Complete Kitchen Makeover</h3>
+          <p>Dramatic transformation showcasing our expertise in space optimization and aesthetic enhancement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="before-after-section">
+      <h2>Before & After Transformations</h2>
+      <div class="before-after-container">
+        <div class="before-after-slider">
+          <img src="Picsart_25-06-24_18-43-38-543.jpg" alt="Before renovation" class="before-image">
+          <img src="20250718_155325-COLLAGE.jpg" alt="After renovation" class="after-image">
+          <div class="slider-handle"></div>
+          <div class="before-label">BEFORE</div>
+          <div class="after-label">AFTER</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-categories">
+      <h2>Our Specializations</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <h3>L-Shape Kitchens</h3>
+          <p>Perfect for corner spaces, maximizing storage while maintaining an efficient work triangle. Ideal for small to medium-sized homes.</p>
+        </div>
+        
+        <div class="category-card">
+          <h3>U-Shape Kitchens</h3>
+          <p>Offering maximum counter space and storage, perfect for larger families who love to cook and entertain.</p>
+        </div>
+        
+        <div class="category-card">
+          <h3>Island Kitchens</h3>
+          <p>Modern, open-concept designs that create a social hub for the home with additional prep space and seating.</p>
+        </div>
+        
+        <div class="category-card">
+          <h3>Parallel Kitchens</h3>
+          <p>Efficient galley-style layouts perfect for narrow spaces, providing excellent workflow and storage optimization.</p>
+        </div>
+        
+        <div class="category-card">
+          <h3>Custom Wardrobes</h3>
+          <p>Tailored storage solutions that maximize space utilization while complementing your bedroom's aesthetic.</p>
+        </div>
+        
+        <div class="category-card">
+          <h3>Interior Design</h3>
+          <p>Complete interior transformations including false ceilings, lighting, and custom furniture to enhance your living spaces.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Start Your Project?</h2>
+      <p>Let us transform your space with our expertise and attention to detail.</p>
+      <a href="contact.html" class="cta-btn">Get Your Free Quote</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/darchmodular" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/darchmodular" target="_blank">Instagram</a>
+        <a href="https://wa.me/917509057442" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 D‑ARCH Modular Kitchen & Interior. All rights reserved.</p>
+        <p>Seoni, Madhya Pradesh | Email: darchmodular@gmail.com | Phone: +91 7509057442</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917509057442?text=Hi! I saw your gallery and I'm interested in your modular kitchen services." class="whatsapp-btn" title="Chat on WhatsApp">
+    💬
+  </a>
+
+  <script>
+    // Before/After Slider Functionality
+    const slider = document.querySelector('.slider-handle');
+    const afterImage = document.querySelector('.after-image');
+    const container = document.querySelector('.before-after-slider');
+    
+    let isDragging = false;
+    
+    slider.addEventListener('mousedown', () => {
+      isDragging = true;
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      
+      if (percentage >= 0 && percentage <= 100) {
+        slider.style.left = percentage + '%';
+        afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+      }
+    });
+    
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>

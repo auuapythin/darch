@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - D-ARCH Modular Kitchen & Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #FF5722;
+      --black: #222;
+      --white: #fff;
+      --light-gray: #f8f8f8;
+    }
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid #f3f3f3;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 5vw;
+      position: sticky; 
+      top: 0; 
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.8rem;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      text-decoration: none; 
+      color: var(--black);
+      margin-left: 2rem; 
+      font-weight: 500;
+      font-size: 1.1rem; 
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    nav a.active, 
+    nav a:hover { 
+      color: var(--orange);
+    }
+    
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--orange);
+    }
+    
+    /* Main Content */
+    main {
+      padding: 80px 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    
+    .about-text h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    
+    .about-text p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .mission-section {
+      background: var(--light-gray);
+      padding: 60px 40px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .mission-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    
+    .mission-section p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .founder-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .founder-image {
+      text-align: center;
+    }
+    
+    .founder-image img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(255,87,34,0.2);
+    }
+    
+    .founder-text h2 {
+      font-size: 2.2rem;
+      color: var(--orange);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    
+    .founder-text p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .values-section {
+      margin-top: 80px;
+    }
+    
+    .values-section h2 {
+      font-size: 2.5rem;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .value-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .value-card h3 {
+      font-size: 1.5rem;
+      color: var(--orange);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .value-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background: #25D366; 
+      color: var(--white);
+      border-radius: 50%; 
+      width: 60px; 
+      height: 60px; 
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3); 
+      display: flex; 
+      align-items: center;
+      justify-content: center; 
+      text-decoration: none; 
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 40px 5vw 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      margin-bottom: 30px;
+    }
+    
+    .footer-links a {
+      color: var(--orange);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .footer-info {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .about-content,
+      .founder-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 40px 5vw;
+      }
+      
+      .mission-section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">D‑ARCH</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reviews.html">Client Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">About D‑ARCH</h1>
+    
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>D‑ARCH Modular Kitchen & Interior was born from a passion for transforming ordinary spaces into extraordinary homes. Founded in the heart of Seoni, Madhya Pradesh, we have been dedicated to bringing innovative design solutions to families across the region.</p>
+        <p>With years of experience in modular kitchen design and complete interior solutions, we understand that every home is unique, and every family has different needs. That's why we focus on creating personalized spaces that truly reflect your lifestyle and preferences.</p>
+        <p>From the initial consultation to the final installation, we work closely with our clients to ensure their vision becomes reality.</p>
+      </div>
+      <div class="about-image">
+        <img src="20250718_155325-COLLAGE.jpg" alt="D-ARCH Kitchen Designs">
+      </div>
+    </div>
+
+    <div class="mission-section">
+      <h2>Our Mission</h2>
+      <p>To design and create beautiful, functional spaces that feel like home. We believe that great design should be accessible to everyone, and we're committed to delivering exceptional quality at affordable prices. Every kitchen we design, every wardrobe we install, and every interior we transform is crafted with care, attention to detail, and a deep understanding of our clients' needs.</p>
+    </div>
+
+    <div class="founder-section">
+      <div class="founder-image">
+        <img src="founder-placeholder.jpg" alt="Founder of D-ARCH" style="background: var(--light-gray);">
+      </div>
+      <div class="founder-text">
+        <h2>Meet Our Founder</h2>
+        <p>Our founder brings years of experience in interior design and a deep passion for creating spaces that enhance daily life. With a background in design and construction, they recognized the need for quality, affordable modular solutions in Seoni and surrounding areas.</p>
+        <p>Their vision was simple: to help families create their dream homes with innovative designs, quality materials, and exceptional service. This vision continues to drive everything we do at D‑ARCH.</p>
+        <p>"Every space has potential. Our job is to unlock it and make it beautiful, functional, and uniquely yours."</p>
+      </div>
+    </div>
+
+    <div class="values-section">
+      <h2>Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Quality First</h3>
+          <p>We use only the finest materials and work with skilled craftsmen to ensure every project meets our high standards and exceeds your expectations.</p>
+        </div>
+        <div class="value-card">
+          <h3>Customer Focus</h3>
+          <p>Your satisfaction is our priority. We listen carefully to your needs and work collaboratively to bring your vision to life.</p>
+        </div>
+        <div class="value-card">
+          <h3>Innovation</h3>
+          <p>We stay current with the latest design trends and technologies to offer you modern, efficient solutions for your home.</p>
+        </div>
+        <div class="value-card">
+          <h3>Transparency</h3>
+          <p>Clear communication, honest pricing, and realistic timelines. You'll always know what to expect from start to finish.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://www.facebook.com/darchmodular" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/darchmodular" target="_blank">Instagram</a>
+        <a href="https://wa.me/917509057442" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 D‑ARCH Modular Kitchen & Interior. All rights reserved.</p>
+        <p>Seoni, Madhya Pradesh | Email: darchmodular@gmail.com | Phone: +91 7509057442</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917509057442?text=Hi! I'm interested in your modular kitchen and interior services." class="whatsapp-btn" title="Chat on WhatsApp">
+    💬
+  </a>
+</body>
+</html>
